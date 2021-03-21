@@ -144,12 +144,11 @@ def BuildHeader(token):
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'en-GB,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-        'Connection': 'keep-alive',
-        'DNT': '1',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'x-requested-with': 'com.tencent.mm',
         'Host': 'ssxx.univs.cn',
         'Referer': 'https://ssxx.univs.cn/client/exam/5f71e934bcdbf3a8c3ba5061/1/1/' + mode_id,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4140.194 Safari/537.36',
         'Authorization': 'Bearer ' + token,
     }
 
@@ -266,6 +265,8 @@ def SubmitAnswer(answer_object, header):
     url = "https://ssxx.univs.cn/cgi-bin/race/answer/"
 
     header["Content-Type"] = "application/json;charset=utf-8"
+    header["origin"]="https://ssxx.univs.cn"
+    header["cookie"]="tgw_l7_route=826486abe528463926cadfe374926483;"
 
     response = requests.request(
         "POST", url, headers=header, data=json.dumps(answer_object[0]))
